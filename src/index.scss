@@ -1,3 +1,7 @@
+$color-primary:   #ff6b6b;
+$color-secondary: #4ecdc4;
+$color-text:  #161616;
+
 @font-face {
   font-family: 'Gabriela';
   src: url('./assets/fonts/Gabriela/Gabriela-Regular.ttf') format('truetype');
@@ -19,6 +23,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: Montserrat, sans-serif;
 }
 #root {
   width: 100%;
@@ -38,7 +43,10 @@ body {
 
 a{
   text-decoration: none;
-  color:  #161616;
+  color: $color-text;
+}
+a:hover {
+  text-decoration: underline;
 }
 ul{
   list-style: none;
