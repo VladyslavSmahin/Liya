@@ -1,0 +1,48 @@
+@font-face {
+  font-family: 'Gabriela';
+  src: url('./assets/fonts/Gabriela/Gabriela-Regular.ttf') format('truetype');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MarckScript';
+  src: url('./assets/fonts/MarckScript/MarckScript-Regular.ttf') format('truetype');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/fonts/Montserrat/MontserratAlternates-Regular.ttf') format('truetype');
+  font-style: normal;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 1300px;
+  padding: 0;
+}
+.container{
+  max-width: 1300px;
+  width: 100%;
+}
+
+a{
+  text-decoration: none;
+  color:  #161616;
+}
+ul{
+  list-style: none;
+}
+li{
+
+}

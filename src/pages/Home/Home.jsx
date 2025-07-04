@@ -1,5 +1,5 @@
 import './index.scss'
 
 export default function Home() {
-    return <h1>Обо мне</h1>
+    return <h1>Головна</h1>
 }

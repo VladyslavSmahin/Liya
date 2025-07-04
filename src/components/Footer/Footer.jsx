@@ -3,8 +3,8 @@ import './index.scss'
 
 export default function Footer() {
     return (
-        <header style={{ padding: '1rem', background: '#eee' }}>
-            <nav style={{ display: 'flex', gap: '1rem' }}>
+        <header>
+            <nav >
                 <Link to="/">Обо мне</Link>
                 <Link to="/poems">Мои стихи</Link>
                 <Link to="/contact">Общение</Link>
