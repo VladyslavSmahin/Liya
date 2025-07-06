@@ -1,36 +1,43 @@
+
 .header {
   padding: 10px 0;
   @media screen and (max-width: 768px) {
     height: 100px;
   }
+
   .burger {
     position: absolute;
     top: 40px;
     right: 20px;
   }
-  .logo{
+
+  .logo {
     position: absolute;
     top: 15px;
     left: 50%;
     transform: translate(-50%);
   }
+
   @media screen and (max-width: 768px) {
     nav a {
       display: none;
     }
 
   }
-  nav{
+
+  nav {
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    .nav-links-left{
+
+    .nav-links-left {
       display: flex;
       justify-content: space-around;
       width: 300px;
     }
-    .nav-links-right{
+
+    .nav-links-right {
       display: flex;
       justify-content: space-around;
       width: 300px;
@@ -40,6 +47,7 @@
 
 nav {
   display: flex;
+
   a {
     font-family: Montserrat, sans-serif;
     text-transform: uppercase;
@@ -72,9 +80,11 @@ nav {
   &.open span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
   }
+
   &.open span:nth-child(2) {
     opacity: 0;
   }
+
   &.open span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
   }
@@ -86,23 +96,58 @@ nav {
   left: -100%;
   width: 100%;
   height: 100vh;
-  background: #e5e3e8;
+  background-color: #fdfdfd;
   padding: 60px 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   gap: 20px;
   transition: left 0.3s ease;
   z-index: 1000;
 
+  .divider {
+    position: absolute;
+    top: 0;
+    border-top: 1px solid black;
+    width: 80%;
+  }
+  .divider-2{
+    position: absolute;
+    border-top: 1px solid black;
+    width: 80%;
+    bottom: 350px;
+  }
+
   a {
     font-family: Montserrat, sans-serif;
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 20px;
   }
 
   &.active {
     left: 0;
     top: 100px;
+  }
+
+  .mobileMenu-contactTeam {
+    text-align: center;
+    padding-bottom: 100px;
+  }
+
+  .mobileMenu-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobileMenu-links > * {
+    margin-bottom: 10px;
+  }
+
+  .mobileMenu-contactTeam > * {
+    margin-bottom: 10px;
   }
 }
 
