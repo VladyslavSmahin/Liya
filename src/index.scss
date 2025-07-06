@@ -33,12 +33,18 @@ $color-text:  #161616;
 
 body {
   margin: 0 auto;
-  max-width: 1300px;
   padding: 0;
 }
 .container{
-  max-width: 1300px;
+  margin: 0 auto;
+  max-width: 1700px;
   width: 100%;
+  @media (min-width: 768px) and (max-width: 2000px) {
+    max-width: calc(700px + 1000 * (100vw - 768px) / 1232);
+  }
+  @media (min-width: 320px) and (max-width: 768px) {
+    max-width: calc(300px + 400 * (100vw - 320px) / 448);
+  }
 }
 
 a{

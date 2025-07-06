@@ -12,9 +12,22 @@
   }
 
   nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     max-width: 750px;
     margin-bottom: 25px;
+
+    @media (min-width: 320px) and (max-width: 768px) {
+     display: flex;
+      flex-direction: column;
+    }
+    a{
+      @media (min-width: 320px) and (max-width: 768px) {
+        margin-bottom: 15px;
+      }
+    }
   }
   .contactTeam{
     display: flex;
@@ -22,5 +35,19 @@
     width: 100%;
     justify-content: space-between;
     margin-bottom: 15px;
+    @media (min-width: 320px) and (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .contactTeam-designer{
+      @media (min-width: 320px) and (max-width: 768px) {
+        margin-bottom: 15px;
+      }
+    }
+  }
+  .contactDev{
+    margin-bottom: 15px;
+    text-align: center;
   }
 }
