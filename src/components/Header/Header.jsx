@@ -10,13 +10,13 @@ export default function Header() {
             <header className={'header container'}>
                 <nav>
                     <div className='nav-links-left'>
-                        <a href=''>Про мене</a>
-                        <a href=''>Мої вірші</a>
+                        <Link to={`/#aboutMe`} >Про мене</Link>
+                        <Link to={`/poems`} >Мої вірші</Link>
                     </div>
                     <img src='../fav-icon.png' className='logo' alt='Logo'/>
                     <div className='nav-links-left'>
-                        <a href=''>Спілкування</a>
-                        <a href=''>Соц. мережі</a>
+                        <Link to={`/#Feedback`} >Спілкування</Link>
+                        <Link to={`/#socials`} >Соц. мережі</Link>
                     </div>
                     <div
                         className={`burger ${isMenuOpen ? 'open' : ''}`}

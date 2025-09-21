@@ -4,7 +4,7 @@ import './index.scss'
 export default function Footer() {
     return (
         <div className='footerWrapper'>
-            <footer className='footer container'>
+            <footer className='footer container' id={`#footer`}>
                 <img src='../fav-icon.png' className='logo' alt='Logo'/>
                 <nav>
                     <a href=''>Про мене</a>

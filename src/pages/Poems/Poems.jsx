@@ -1,5 +1,9 @@
 import './index.scss'
 
 export default function Poems() {
-    return <h1>Вірші</h1>
+    return (
+        <div className={``}>
+            Вірші
+        </div>
+    )
 }

@@ -22,7 +22,7 @@ export default function Home() {
 
     return (
         <div className="home-page container">
-            <section className="home-section-1">
+            <section className="home-section-1" id={`mainSection`}>
                 <div className="home-section-1-left">
                     <div>
                         музыка будет
@@ -37,7 +37,7 @@ export default function Home() {
                     <img src='../sect1-img.png' alt="mainImg"/>
                 </div>
             </section>
-            <section className="home-section-2">
+            <section className="home-section-2" id={`aboutMe`}>
                 <div className='home-section-2-1col'>
                     <img className='sect2-img-1' src='../sect2-img-1.jpg' alt="mainImg"/>
                 </div>
@@ -62,7 +62,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <section className="home-section-3">
+            <section className="home-section-3" id={`myArtNums`}>
                 <div className='home-section-3-title'>
                     <h3>Цифри моєї творчості</h3>
                     <p>Творчість пронизана через все моє життя.
@@ -92,7 +92,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <section className="home-section-4">
+            <section className="home-section-4" id={`myPoems`}>
                 <div className='home-section-4-1'>
                    <div className='home-section-4-1-1'>
                        <h3>мої</h3>
@@ -130,7 +130,7 @@ export default function Home() {
                     <button>Замовити збірник</button>
                 </div>
             </section>
-            <section className="home-section-6">
+            <section className="home-section-6"  id={`Feedback`}>
                 <img className={`home-section-6-img`} src={`../sect-6-img-vector.svg`} alt="Img"/>
                 <h3>Давай познайомимося ближче</h3>
                 <div className='home-section-6-Content'>
@@ -164,7 +164,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <section className="home-section-7">
+            <section className="home-section-7" id={`socials`}>
                 <div className='home-section-7-title'>
                     <h3>Більше дізнатися про</h3>
                     <h3>мене можна тут</h3>
