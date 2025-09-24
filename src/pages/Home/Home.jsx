@@ -38,9 +38,20 @@ export default function Home() {
                 </div>
             </section>
             <section className="home-section-2" id={`aboutMe`}>
-                <div className='home-section-2-1col'>
-                    <img className='sect2-img-1' src='../sect2-img-1.jpg' alt="mainImg"/>
+                <div className="home-section-2-1col">
+                    <picture>
+                        <source
+                            srcSet="../sect2-img-3.jpg"
+                            media="(max-width: 768px)"
+                        />
+                        <img
+                            className="sect2-img-1"
+                            src="../sect2-img-1.jpg"
+                            alt="mainImg"
+                        />
+                    </picture>
                 </div>
+
                 <div className='home-section-2-2col'>
                     <div>
                         <h3>Про мене</h3>
@@ -48,7 +59,17 @@ export default function Home() {
                             буквально за все творче та інколи не можу обрати: сьогодні буду малювати, писати вірші, чи
                             прозу, в'язати, чи вчити нову пісню.</p>
                     </div>
-                    <img className='sect2-img-2' src='../sect2-img-2.jpg' alt="mainImg"/>
+                        <picture className='sect2-img-2'>
+                            <source
+                                srcSet="../sect2-img-1-mobile.jpg"
+                                media="(max-width: 768px)"
+                            />
+                            <img
+                                className="sect2-img-1"
+                                src="../sect2-img-2.jpg"
+                                alt="mainImg"
+                            />
+                        </picture>
                 </div>
                 <div className='home-section-2-3col'>
                     <img className='sect2-img-3' src='../sect2-img-3.jpg' alt="mainImg"/>
@@ -142,7 +163,7 @@ export default function Home() {
                             <p>3. Я меломан. В моєму плей-листі є все, від тяжкого<br/> року до фортепіанної музики.</p>
                             <p>4. Я екстраверт. Завжди рада знайомитись з новими <br/>людьми.</p>
                         </div>
-                        <img src={`../sect-6-img.jpg`} alt="Img"/>
+                        <img className='home-section-6-leftContentWrapper-img' src={`../sect-6-img.jpg`} alt="Img"/>
                     </div>
                     <div className='home-section-6-rightContentWrapper'>
                         <div className='home-section-6-rightContentText'>
