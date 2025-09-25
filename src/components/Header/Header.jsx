@@ -31,10 +31,10 @@ export default function Header() {
             <div className={`mobileMenu ${isMenuOpen ? 'active' : ''}`}>
                 <span className='divider'></span>
                 <div className='mobileMenu-links'>
-                    <a href=''>Про мене</a>
-                    <a href=''>Мої вірші</a>
-                    <a href=''>Спілкування</a>
-                    <a href=''>Соц. мережі</a>
+                    <Link to={`/#aboutMe`} >Про мене</Link>
+                    <Link to={`/poems`} >Мої вірші</Link>
+                    <Link to={`/#Feedback`} >Спілкування</Link>
+                    <Link to={`/#socials`} >Соц. мережі</Link>
                     <a href=''>Політика Конфіденційності</a>
                 </div>
                 <span className='divider-2'></span>
