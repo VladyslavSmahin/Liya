@@ -128,28 +128,7 @@ export default function MusicCircle({
             {uiRevealed && (
                 <div className="mc-controls-Wrapper">
                     {/* Prev / Next */}
-                    <div className="mc-controls fade-in">
-                        <button className="mc-ctl" onClick={handlePrev} aria-label="Previous">
-                            ⟨⟨
-                        </button>
-                        <button className="mc-ctl" onClick={handleNext} aria-label="Next">
-                            ⟩⟩
-                        </button>
-                    </div>
 
-                    {/* Volume */}
-                    <div className="mc-volume fade-in">
-                        <span>🔊</span>
-                        <input
-                            type="range"
-                            min="0"
-                            max="1"
-                            step="0.01"
-                            value={volume}
-                            onChange={(e) => setVolume(Number(e.target.value))}
-                        />
-                        <span className="mc-volval">{Math.round(volume * 100)}%</span>
-                    </div>
 
                     {/* Плейлист */}
                     <div className="mc-pl-wrap fade-in">
@@ -163,10 +142,31 @@ export default function MusicCircle({
                                         aria-label="Скрыть плейлист"
                                         title="Скрыть плейлист"
                                     >
-                                        ×
+                                        Плейлист приховати
+                                    </button>
+                                </div>
+                                <div className="mc-controls fade-in">
+                                    <button className="mc-ctl" onClick={handlePrev} aria-label="Previous">
+                                        ⟨⟨
+                                    </button>
+                                    <button className="mc-ctl" onClick={handleNext} aria-label="Next">
+                                        ⟩⟩
                                     </button>
                                 </div>
 
+                                {/* Volume */}
+                                <div className="mc-volume fade-in">
+                                    <span>🔊</span>
+                                    <input
+                                        type="range"
+                                        min="0"
+                                        max="1"
+                                        step="0.01"
+                                        value={volume}
+                                        onChange={(e) => setVolume(Number(e.target.value))}
+                                    />
+                                    <span className="mc-volval">{Math.round(volume * 100)}%</span>
+                                </div>
                                 <ul className="mc-trackList">
                                     {playlist.map((t, i) => {
                                         const isActive = i === index;
