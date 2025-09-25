@@ -1,5 +1,6 @@
 import './index.scss'
 import {useState} from "react";
+import MusicCircle from "../../components/MusicCircle/MusicCircle.jsx";
 
 export default function Home() {
     const [statisticItemsActiveIndex, setStatisticItemsActiveIndex] = useState(null);
@@ -24,9 +25,19 @@ export default function Home() {
         <div className="home-page container">
             <section className="home-section-1" id={`mainSection`}>
                 <div className="home-section-1-left">
-                    <div>
-                        музыка будет
-                    </div>
+                    <MusicCircle
+                        playlist={[
+                            { title: "Lavanda 01", src: "/audio/audio-1.mp3" },
+                            { title: "Lavanda 02", src: "/audio/audio-2.mp3" },
+                            { title: "Lavanda 03", src: "/audio/audio-3.mp3" },
+                            { title: "Lavanda 04", src: "/audio/audio-4.mp3" },
+                            { title: "Lavanda 05", src: "/audio/audio-5.mp3" },
+                            { title: "Lavanda 06", src: "/audio/audio-6.mp3" },
+                            { title: "Lavanda 07", src: "/audio/audio-7.mp3" },
+                        ]}
+                        text="— turn on the music — "
+                        speed={12}
+                    />
                     <div className='h1-wrapper'>
                         <h1>Лавандова
                             поезія</h1>

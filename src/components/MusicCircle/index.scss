@@ -1,0 +1,270 @@
+.mc {
+  --mc-size: 160px; /* диаметр круга */
+  --mc-speed: 12s; /* скорость вращения текста */
+
+  width: var(--mc-size);
+  height: var(--mc-size);
+  display: flex;
+  place-items: center;
+  left: 40px;
+  top: 150px;
+  @media (min-width: 320px) and (max-width: 768px) {
+    position: absolute;
+    /*left: calc(20px + 20 * (100vw - 320px) / 448);*/
+
+    /*top: calc(150px - 20 * (100vw - 320px) / 448);*/
+    z-index: 2;
+  }
+}
+
+.mc-disc {
+  position: relative;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    background: transparent;
+  }
+}
+
+.mc-ring {
+  width: 200px;
+  height: auto;
+  position: relative;
+  inset: 0;
+  animation: mc-rotate var(--mc-speed) linear infinite;
+  @media (min-width: 320px) and (max-width: 1440px) {
+    width: calc(100px + 100 * (100vw - 320px) / 1120);
+  }
+
+}
+
+.mc-text {
+  font-family: inherit;
+  font-size: 20px;
+  letter-spacing: 2px;
+  fill: #232323;
+  text-transform: lowercase;
+}
+
+/* Кнопка в центре */
+.mc-btn {
+  padding: 0;
+  width: fit-content;
+  height: auto;
+  border: none;
+  background: transparent !important;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: none;
+  &:hover,
+  &:active,
+  &:focus {
+    transform: translate(-50%, -50%);
+    outline: none;
+  }
+
+  .mc-icon {
+    /* PLAY: треугольник */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 0 12px 20px;
+    border-color: transparent transparent transparent #1e1e1e;
+    transition: all .18s ease;
+  }
+
+  &.pause .mc-icon {
+    /* PAUSE: две палочки */
+    width: 22px;
+    height: 22px;
+    border: none;
+    background: linear-gradient(#1e1e1e, #1e1e1e) left / 7px 100% no-repeat,
+    linear-gradient(#1e1e1e, #1e1e1e) right / 7px 100% no-repeat;
+  }
+}
+
+@keyframes mc-rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.mc-btn {
+
+  .mc-icon {
+    /* PLAY: треугольник */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 0 12px 20px;
+    border-color: transparent transparent transparent #1e1e1e;
+    transition: all .18s ease;
+  }
+
+  &.pause .mc-icon {
+    /* PAUSE: две палочки */
+    width: 22px;
+    height: 22px;
+    border: none;
+    background: linear-gradient(#1e1e1e, #1e1e1e) left / 7px 100% no-repeat,
+    linear-gradient(#1e1e1e, #1e1e1e) right / 7px 100% no-repeat;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 1440px) {
+  .mc {
+    width: calc(40px + 120 * (100vw - 320px) / 1120);
+    height: calc(40px + 120 * (100vw - 320px) / 1120);
+  }
+
+  .mc-btn {
+    width: calc(var(--mc-size) * 0.34);
+    height: calc(var(--mc-size) * 0.34);
+  }
+
+
+}
+@media (min-width: 320px) and (max-width: 768px) {
+  .mc {
+    flex-direction: column;
+  }
+
+}
+
+.mc-controls {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  .mc-ctl {
+    padding: 6px 10px;
+    border-radius: 10px;
+    border: 1px solid #1e1e1e;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+  }
+}
+
+.mc-volume {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  input[type="range"] {
+    width: 160px;
+  }
+
+  .mc-volval {
+    min-width: 34px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.mc-trackList {
+  margin-top: 10px;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.mc-track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #b9a1d1;
+  }
+
+  &.active {
+    background: #ede3f8;
+    color: #4b2a72;
+
+    .dot {
+      background: #6e3ea7;
+    }
+  }
+}
+.mc-controls-Wrapper{
+  margin-left: 120px;
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(4px);
+  animation: mc-fade .25s ease forwards;
+  background: rgba(137, 135, 243, 0.4);
+}
+
+@keyframes mc-fade {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.mc-pl-head{
+  display: flex;
+  align-items: center;
+}
+.mc-pl-close, .mc-pl-open{
+  background: transparent;
+}
+
+/* строка трека с прогресс-заливкой */
+.mc-track {
+  position: relative;
+  overflow: hidden;
+
+  /* мягкая «волна»/заливка фоном */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 0%;                                 /* по умолчанию нет заливки */
+    background: linear-gradient(
+                    90deg,
+                    rgba(110, 62, 167, 0.18),
+                    rgba(110, 62, 167, 0.18)
+    );
+    transition: width .2s linear;              /* плавно */
+    pointer-events: none;
+  }
+
+  /* показывать прогресс только у активного И воспроизводимого */
+  &.active.playing::before {
+    width: var(--progress, 0%);
+  }
+
+  /* чтобы текст был поверх заливки */
+  .title, .dot { position: relative; z-index: 1; }
+}
+
+/* для активной строки подсветка остаётся как была */
+.mc-track.active {
+  background: transparent; /* оставим фон прозрачным — заливку делает ::before */
+  color: #4b2a72;
+}
