@@ -83,7 +83,17 @@ export default function Home() {
                         </picture>
                 </div>
                 <div className='home-section-2-3col'>
-                    <img className='sect2-img-3' src='../sect2-img-3.jpg' alt="mainImg"/>
+                    <picture className="sect2-img-1-Wrapper">
+                        <source
+                            srcSet="../sect2-img-2-mobile.jpg"
+                            media="(max-width: 768px)"
+                        />
+                        <img
+                            className="sect2-img-1"
+                            src="../sect2-img-3.jpg"
+                            alt="mainImg"
+                        />
+                    </picture>
                     <div>
                         <h3>Ціль моєї творчості</h3>
                         <div className='home-section-2-3col-text'>
