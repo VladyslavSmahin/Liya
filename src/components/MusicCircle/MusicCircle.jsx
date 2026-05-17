@@ -63,7 +63,7 @@ export default function MusicCircle({
 }) {
     const [index, setIndex] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [volume, setVolume] = useState(0.8);
+    const [volume, setVolume] = useState(0.2);
     const [playlistOpen, setPlaylistOpen] = useState(true);
     const [progress, setProgress] = useState(0);
 

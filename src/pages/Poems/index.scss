@@ -69,6 +69,19 @@
     color: #161616;
   }
 
+  &__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    padding: 24px;
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: center;
+    color: #6a6a6a;
+  }
+
   &__avatar {
     position: absolute;
     right: 20px;

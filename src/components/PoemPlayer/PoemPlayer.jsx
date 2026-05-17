@@ -9,6 +9,7 @@ function formatTime(seconds) {
 
 export default function PoemPlayer({
     title,
+    disabled = false,
     isPlaying,
     progress,
     currentTime,
@@ -30,7 +31,9 @@ export default function PoemPlayer({
                 type="button"
                 className={`poem-player__play ${isPlaying ? "is-paused" : ""}`}
                 onClick={onToggle}
+                disabled={disabled}
                 aria-label={isPlaying ? "Пауза" : "Відтворити"}
+                aria-disabled={disabled}
             />
 
             <div className="poem-player__main">

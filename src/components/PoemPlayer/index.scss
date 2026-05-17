@@ -36,6 +36,11 @@
         linear-gradient(#161616, #161616) right / 4px 100% no-repeat;
       box-shadow: 7px 0 0 #161616;
     }
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
   }
 
   &__main {

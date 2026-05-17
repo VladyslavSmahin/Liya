@@ -5,18 +5,18 @@ import CollectionTablet from "../../components/CollectionTablet/CollectionTablet
 import "./index.scss";
 
 export default function Poems() {
-    const [activeId, setActiveId] = useState(poems[0].id);
+    const [activeId, setActiveId] = useState(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [volume, setVolume] = useState(0.85);
+    const [volume, setVolume] = useState(0.2);
     const [likedIds, setLikedIds] = useState(() => new Set());
     const [feedback, setFeedback] = useState("");
 
     const audioRef = useRef(null);
     const isSeekingRef = useRef(false);
-    const activePoem = poems.find((p) => p.id === activeId) ?? poems[0];
+    const activePoem = activeId ? poems.find((p) => p.id === activeId) : null;
 
     const syncDuration = useCallback(() => {
         const audio = audioRef.current;
@@ -45,10 +45,27 @@ export default function Poems() {
     useEffect(() => {
         const audio = audioRef.current;
         if (!audio) return;
-        audio.src = activePoem.audio;
+
+        if (!activeId) {
+            audio.pause();
+            audio.removeAttribute("src");
+            setIsPlaying(false);
+            setProgress(0);
+            setCurrentTime(0);
+            setDuration(0);
+            return;
+        }
+
+        const poem = poems.find((p) => p.id === activeId);
+        if (!poem) return;
+
+        audio.src = poem.audio;
         audio.load();
-        playActive();
-    }, [activeId, activePoem.audio, playActive]);
+        audio.pause();
+        setIsPlaying(false);
+        setProgress(0);
+        setCurrentTime(0);
+    }, [activeId]);
 
     useEffect(() => {
         if (audioRef.current) audioRef.current.volume = volume;
@@ -61,7 +78,7 @@ export default function Poems() {
 
     const togglePlay = () => {
         const audio = audioRef.current;
-        if (!audio) return;
+        if (!audio || !activePoem) return;
         if (isPlaying) {
             audio.pause();
             setIsPlaying(false);
@@ -106,6 +123,7 @@ export default function Poems() {
     };
 
     const toggleLike = () => {
+        if (!activeId) return;
         setLikedIds((prev) => {
             const next = new Set(prev);
             if (next.has(activeId)) next.delete(activeId);
@@ -163,31 +181,44 @@ export default function Poems() {
                 </div>
 
                 <article className="poems-board__reader">
-                    <h2 className="poems-board__poem-title">{activePoem.title}</h2>
-                    <div className="poems-board__poem-text">
-                        {activePoem.lines.map((line, i) =>
-                            line ? <p key={i}>{line}</p> : <br key={i} />
-                        )}
-                    </div>
-                    <p className="poems-board__poem-date">{activePoem.date}</p>
-                    {activePoem.avatar && (
-                        <img
-                            className="poems-board__avatar"
-                            src={activePoem.avatar}
-                            alt=""
-                            aria-hidden="true"
-                        />
+                    {activePoem ? (
+                        <>
+                            <h2 className="poems-board__poem-title">{activePoem.title}</h2>
+                            <div className="poems-board__poem-text">
+                                {activePoem.lines.map((line, i) =>
+                                    line ? <p key={i}>{line}</p> : <br key={i} />
+                                )}
+                            </div>
+                            <p className="poems-board__poem-date">{activePoem.date}</p>
+                            {activePoem.avatar && (
+                                <img
+                                    className="poems-board__avatar"
+                                    src={activePoem.avatar}
+                                    alt=""
+                                    aria-hidden="true"
+                                />
+                            )}
+                        </>
+                    ) : (
+                        <p className="poems-board__placeholder">
+                            Оберіть вірш на обкладинці, щоб прочитати та послухати
+                        </p>
                     )}
                 </article>
 
                 <PoemPlayer
-                    title={`${activePoem.playerLabel} ${activePoem.author}`}
+                    title={
+                        activePoem
+                            ? `${activePoem.playerLabel} ${activePoem.author}`
+                            : "Оберіть вірш"
+                    }
+                    disabled={!activePoem}
                     isPlaying={isPlaying}
                     progress={progress}
                     currentTime={currentTime}
                     duration={duration}
                     volume={volume}
-                    liked={likedIds.has(activeId)}
+                    liked={activeId ? likedIds.has(activeId) : false}
                     onToggle={togglePlay}
                     onSeek={handleSeek}
                     onSeekStart={handleSeekStart}
