@@ -16,9 +16,19 @@
     margin-top: 24px;
     padding-top: 16px;
   }
+  &__logo-link {
+    display: inline-block;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   .logo {
     max-width: 50px;
     margin: 15px 0;
+    display: block;
   }
 
   nav {

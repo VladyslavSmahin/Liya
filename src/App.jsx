@@ -8,15 +8,21 @@ import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy.jsx";
 import {useEffect} from "react";
 
 function ScrollToHash() {
-    const { hash } = useLocation();
+    const { pathname, hash } = useLocation();
+
     useEffect(() => {
         if (hash) {
-            const el = document.getElementById(hash.slice(1));
-            if (el) el.scrollIntoView({ behavior: "smooth" });
+            const id = hash.slice(1);
+            const scrollToTarget = () => {
+                const el = document.getElementById(id);
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+            };
+            requestAnimationFrame(() => requestAnimationFrame(scrollToTarget));
         } else {
             window.scrollTo({ top: 0 });
         }
-    }, [hash]);
+    }, [pathname, hash]);
+
     return null;
 }
 

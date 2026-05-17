@@ -18,15 +18,17 @@ export default function Header() {
             <header className='header container'>
                 <nav>
                     <div className='nav-links-left'>
-                        <Link to='/#aboutMe'>Про мене</Link>
-                        <Link to='/poems'>Мої вірші</Link>
+                        <Link to={{ pathname: "/", hash: "#aboutMe" }}>Про мене</Link>
+                        <Link to="/poems">Мої вірші</Link>
                     </div>
 
-                    <img src='../fav-icon.png' className='logo' alt='Logo' />
+                    <Link to="/" aria-label="На головну">
+                        <img src="/fav-icon.png" className="logo" alt="" />
+                    </Link>
 
-                    <div className='nav-links-left'>
-                        <Link to='/#Feedback'>Спілкування</Link>
-                        <Link to='/#socials'>Соц. мережі</Link>
+                    <div className="nav-links-left">
+                        <Link to={{ pathname: "/", hash: "#Feedback" }}>Спілкування</Link>
+                        <Link to={{ pathname: "/", hash: "#socials" }}>Соц. мережі</Link>
                     </div>
 
                     <div
@@ -44,10 +46,10 @@ export default function Header() {
                 <span className='divider'></span>
 
                 <div className='mobileMenu-links' onClick={handleNavClick}>
-                    <Link to='/#aboutMe'>Про мене</Link>
-                    <Link to='/poems'>Мої вірші</Link>
-                    <Link to='/#Feedback'>Спілкування</Link>
-                    <Link to='/#socials'>Соц. мережі</Link>
+                    <Link to={{ pathname: "/", hash: "#aboutMe" }}>Про мене</Link>
+                    <Link to="/poems">Мої вірші</Link>
+                    <Link to={{ pathname: "/", hash: "#Feedback" }}>Спілкування</Link>
+                    <Link to={{ pathname: "/", hash: "#socials" }}>Соц. мережі</Link>
                     <Link to='/privacy' onClick={handleNavClick}>
                         Політика конфіденційності
                     </Link>
