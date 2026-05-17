@@ -1,3 +1,14 @@
+.home-link-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--tekst, #161616);
+  width: fit-content;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .home-page {
   display: flex;
   flex-direction: column;
@@ -19,8 +30,14 @@
     }
 
     .home-section-1-left {
+      position: relative;
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
 
       @media (min-width: 320px) and (max-width: 768px) {
+        width: 100%;
         gap: 30px;
       }
 
@@ -664,12 +681,22 @@
   }
 
   .home-section-7 {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 100px 0;
+    overflow: visible;
+    isolation: isolate;
+
     @media (min-width: 320px) and (max-width: 1440px) {
       margin: calc(30px + 70 * (100vw - 320px) / 1120) 0;
+    }
+
+    .home-section-7-title,
+    .home-section-7-socialsCards {
+      position: relative;
+      z-index: 1;
     }
 
     .home-section-7-title {
@@ -692,32 +719,161 @@
     }
 
     .home-section-7-socialsCards {
+      position: relative;
+      z-index: 1;
+
       .home-section-7-socialsCard:nth-child(1), .home-section-7-socialsCard:nth-child(2) {
         margin-bottom: 40px;
       }
 
       .home-section-7-socialsCard {
         img {
+          position: relative;
+          z-index: 1;
+          display: block;
+
           @media (min-width: 320px) and (max-width: 1440px) {
             max-width: calc(300px + 1000 * (100vw - 320px) / 1120);
           }
         }
-
-
       }
     }
 
-    .home-section-7-bg-img-1,
-    .home-section-7-bg-img-2,
-    .home-section-7-bg-img-3,
-    .home-section-7-bg-img-4,
-    .home-section-7-bg-img-5,
+    // Декор — позиції за макетом
+    [class^="home-section-7-bg-img"] {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .home-section-7-bg-img-6,
     .home-section-7-bg-img-7,
-    .home-section-7-bg-img-8, {
-      position: absolute;
-      @media (min-width: 320px) and (max-width: 768px) {
-        display: none;
+    .home-section-7-bg-img-9 {
+      margin: 0;
+      font-family: Gabriela, serif;
+      font-weight: 400;
+      line-height: 0.75;
+      color: #d1c6f3;
+      user-select: none;
+    }
+
+    .home-section-7-bg-img-6 {
+      top: 0;
+      right: clamp(4%, 8vw, 14%);
+      font-size: clamp(72px, 12vw, 140px);
+    }
+
+    .home-section-7-bg-img-7 {
+      left: clamp(2%, 6vw, 10%);
+      bottom: 12%;
+      font-size: clamp(64px, 10vw, 120px);
+    }
+
+    .home-section-7-bg-img-9 {
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      font-size: clamp(56px, 8vw, 100px);
+      opacity: 0.85;
+    }
+
+    .home-section-7-bg-img-2 {
+      top: 14%;
+      left: clamp(6%, 12vw, 18%);
+      width: clamp(90px, 12vw, 166px);
+      height: auto;
+    }
+
+    .home-section-7-bg-img-5 {
+      top: 28%;
+      right: clamp(2%, 8vw, 12%);
+      width: clamp(180px, 24vw, 289px);
+      height: auto;
+    }
+
+    .home-section-7-bg-img-8 {
+      top: 22%;
+      right: clamp(-4%, 2vw, 6%);
+      width: clamp(220px, 38vw, 480px);
+      height: auto;
+      opacity: 0.55;
+    }
+
+    .home-section-7-bg-img-3 {
+      top: 38%;
+      left: clamp(-2%, 2vw, 6%);
+      width: clamp(120px, 16vw, 247px);
+      height: auto;
+      opacity: 0.75;
+    }
+
+    .home-section-7-bg-img-4 {
+      right: clamp(0%, 4vw, 8%);
+      bottom: 14%;
+      width: clamp(140px, 18vw, 270px);
+      height: auto;
+      opacity: 0.75;
+    }
+
+    .home-section-7-bg-img-1 {
+      left: clamp(4%, 10vw, 14%);
+      bottom: 20%;
+      width: clamp(64px, 9vw, 122px);
+      height: auto;
+    }
+
+    @media (min-width: 320px) and (max-width: 768px) {
+      .home-section-7-bg-img-6 {
+        top: 4%;
+        right: 2%;
+        font-size: clamp(56px, 16vw, 80px);
+      }
+
+      .home-section-7-bg-img-7 {
+        left: 0;
+        bottom: 8%;
+        font-size: clamp(48px, 14vw, 64px);
+      }
+
+      .home-section-7-bg-img-9 {
+        bottom: -8px;
+        font-size: clamp(40px, 12vw, 56px);
+      }
+
+      .home-section-7-bg-img-2 {
+        top: 18%;
+        left: 4%;
+        width: clamp(72px, 22vw, 110px);
+      }
+
+      .home-section-7-bg-img-5 {
+        top: 24%;
+        right: -4%;
+        width: clamp(140px, 42vw, 200px);
+      }
+
+      .home-section-7-bg-img-8 {
+        top: 20%;
+        right: -12%;
+        width: clamp(160px, 52vw, 240px);
+      }
+
+      .home-section-7-bg-img-3 {
+        top: 42%;
+        left: -6%;
+        width: clamp(100px, 30vw, 160px);
+      }
+
+      .home-section-7-bg-img-4 {
+        right: -6%;
+        bottom: 10%;
+        width: clamp(100px, 32vw, 180px);
+      }
+
+      .home-section-7-bg-img-1 {
+        left: 2%;
+        bottom: 16%;
+        width: clamp(52px, 16vw, 80px);
       }
     }
   }
@@ -733,9 +889,26 @@
       padding: calc(30px + 70 * (100vw - 320px) / 1120) 0;
     }
 
+    @media (min-width: 320px) and (max-width: 768px) {
+      padding-bottom: 24px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
     .home-section-8-content {
       max-width: 780px;
       width: 100%;
+      padding: 0 clamp(12px, 4vw, 24px);
+
+      h4 {
+        font-family: Gabriela, serif;
+        font-weight: 400;
+        font-size: clamp(48px, 8vw, 80px);
+        line-height: 0.6;
+        text-align: center;
+        color: var(--tekst);
+        margin: 0 0 12px;
+      }
 
       p {
         font-family: var(--second-family);
@@ -744,6 +917,23 @@
         line-height: 208%;
         text-align: center;
         color: var(--tekst);
+
+        span {
+          font-family: inherit;
+          font-size: inherit;
+        }
+      }
+
+      @media (min-width: 320px) and (max-width: 768px) {
+        h4 {
+          font-size: clamp(36px, 10vw, 48px);
+          margin-bottom: 8px;
+        }
+
+        p {
+          font-size: clamp(13px, 3.6vw, 15px);
+          line-height: 1.65;
+        }
       }
     }
 
@@ -766,11 +956,26 @@
       position: absolute;
       bottom: 0;
       right: 0;
-      @media (min-width: 320px) and (max-width: 1440px) {
-        bottom: calc(-80px + 40 * (100vw - 320px) / 1120);
-        /*right: calc(40px - 40 * (100vw - 320px) / 1120) ;*/
+      max-width: min(42%, 320px);
+      height: auto;
+      object-fit: cover;
+
+      @media (min-width: 769px) and (max-width: 1440px) {
+        bottom: 0;
         opacity: 0.5;
         z-index: -1;
+      }
+
+      @media (min-width: 320px) and (max-width: 768px) {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        display: block;
+        max-width: min(92%, 340px);
+        width: 100%;
+        margin: 28px auto 0;
+        opacity: 1;
+        z-index: 0;
       }
     }
   }

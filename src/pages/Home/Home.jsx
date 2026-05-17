@@ -1,5 +1,6 @@
 import './index.scss'
 import {useState} from "react";
+import { Link } from "react-router-dom";
 import MusicCircle from "../../components/MusicCircle/MusicCircle.jsx";
 
 export default function Home() {
@@ -33,9 +34,8 @@ export default function Home() {
                             { title: "Lavanda 04", src: "/audio/audio-4.mp3" },
                             { title: "Lavanda 05", src: "/audio/audio-5.mp3" },
                             { title: "Lavanda 06", src: "/audio/audio-6.mp3" },
-                            { title: "Lavanda 07", src: "/audio/audio-7.mp3" },
                         ]}
-                        text="— turn on the music — "
+                        text="turn on the music"
                         speed={12}
                     />
                     <div className='h1-wrapper'>
@@ -144,7 +144,7 @@ export default function Home() {
                         Мої вірші — це не просто рими, а відображення мого внутрішнього світу. Я пишу про почуття, моменти, які залишають слід у серці, та думки, що народжуються серед тиші.<br/><br/>
                         У моїх віршах переплітаються ліричність і ніжність, спогади й мрії. Іноді вони легкі, мов подих вітру, а іноді — глибокі, як океан думок.
                     </p>
-                    <button>Прочитати вірші</button>
+                    <Link to="/poems" className="home-link-btn">Прочитати вірші</Link>
                 </div>
                 <div className='home-section-4-2'>
                     <img className={`section-4-2-1-img`} src={`../sect4-img-1.jpg`} alt="Img"/>
@@ -169,7 +169,7 @@ export default function Home() {
                         Я завжди вірила, що слова мають силу торкатися серця, огортати душу і змінювати світогляд. Цей збірник — не просто вірші на папері. Це подорож крізь емоції, спогади, мрії та невимовні відчуття.<br/><br/>
                         Цей збірник — це моя відвертість, моя душа у словах. Сподіваюся, ти знайдеш у ньому щось своє — близьке, рідне, таке, що відгукнеться у твоєму серці.
                     </p>
-                    <button>Замовити збірник</button>
+                    <Link to="/poems#collection" className="home-link-btn">Замовити збірник</Link>
                 </div>
             </section>
             <section className="home-section-6"  id={`Feedback`}>
@@ -222,13 +222,15 @@ export default function Home() {
                         <img src={`../card-yt.jpg`} alt="Img"/>
                     </div>
                 </div>
-                <p className={`home-section-7-bg-img-6`}>“</p>
-                <p className={`home-section-7-bg-img-7`}>“</p>
-                <img className={`home-section-7-bg-img-1`} src={`../vector-1.svg`} alt="Img"/>
-                <img className={`home-section-7-bg-img-2`} src={`../vector-2.svg`} alt="Img"/>
-                <img className={`home-section-7-bg-img-3`} src={`../vector-3.svg`} alt="Img"/>
-                <img className={`home-section-7-bg-img-4`} src={`../vector-4.svg`} alt="Img"/>
-                <img className={`home-section-7-bg-img-5`} src={`../vector-5.svg`} alt="Img"/>
+                <p className="home-section-7-bg-img-6" aria-hidden="true">“</p>
+                <p className="home-section-7-bg-img-7" aria-hidden="true">„</p>
+                <p className="home-section-7-bg-img-9" aria-hidden="true">“</p>
+                <img className="home-section-7-bg-img-2" src="/vector-2.svg" alt="" aria-hidden="true" />
+                <img className="home-section-7-bg-img-5" src="/vector-5.svg" alt="" aria-hidden="true" />
+                <img className="home-section-7-bg-img-8" src="/vector-7.svg" alt="" aria-hidden="true" />
+                <img className="home-section-7-bg-img-1" src="/vector-1.svg" alt="" aria-hidden="true" />
+                <img className="home-section-7-bg-img-3" src="/vector-3.svg" alt="" aria-hidden="true" />
+                <img className="home-section-7-bg-img-4" src="/vector-4.svg" alt="" aria-hidden="true" />
             </section>
             <section className="home-section-8">
                 <div className='home-section-8-content'>

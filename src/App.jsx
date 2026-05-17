@@ -4,7 +4,7 @@ import Poems from "./pages/Poems/Poems.jsx";
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import './App.scss'
-import PrivacyPolicy from "./pages/Contact/Contact.jsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy.jsx";
 import {useEffect} from "react";
 
 function ScrollToHash() {
@@ -31,6 +31,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/poems" element={<Poems />} />
+                        <Route path="/privacy" element={<PrivacyPolicy />} />
                         <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
                     </Routes>
                 </main>

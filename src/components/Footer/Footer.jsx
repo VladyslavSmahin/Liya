@@ -8,9 +8,10 @@ export default function Footer() {
                 <img src='../fav-icon.png' className='logo' alt='Logo'/>
                 <nav>
                     <a href=''>Про мене</a>
-                    <a href=''>Мої вірші</a>
+                    <Link to='/poems'>Мої вірші</Link>
                     <a href=''>Спілкування</a>
                     <a href=''>Соц. мережі</a>
+                    <Link to='/privacy'>Політика конфіденційності</Link>
                 </nav>
                 <div className='contactTeam'>
                     <p className='contactTeam-designer'>Дизайн:<a href='https://www.instagram.com/miss.shaana/' target='_blank'> miss.shaana</a></p>

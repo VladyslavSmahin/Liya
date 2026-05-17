@@ -1,0 +1,148 @@
+.collection-tablet {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 340px);
+  margin: 0 auto;
+
+  &__frame {
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  &__screen {
+    position: absolute;
+    top: 11.5%;
+    left: 11%;
+    right: 19%;
+    bottom: 12%;
+    overflow: hidden;
+    border-radius: 2px;
+    background: #f4f2ef;
+  }
+
+  &__poem {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(6px, 2.5%, 12px) clamp(5px, 2%, 10px);
+    overflow: hidden;
+    will-change: transform, opacity;
+  }
+
+  &__title {
+    flex-shrink: 0;
+    margin: 0 0 0.35em;
+    font-family: Gabriela, serif;
+    font-weight: 400;
+    font-size: clamp(9px, 2.8vw, 13px);
+    line-height: 1.2;
+    color: #161616;
+    text-align: center;
+  }
+
+  &__body {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__line {
+    margin: 0 0 0.2em;
+    font-family: Montserrat, sans-serif;
+    font-size: clamp(7px, 2.1vw, 10px);
+    line-height: 1.45;
+    color: #2a2a2a;
+    text-align: center;
+  }
+
+  &__poem--idle {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  &__poem--out {
+    animation: collection-tablet-swipe-out 0.48s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 1;
+  }
+
+  &__poem--in {
+    animation: collection-tablet-swipe-in 0.48s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 2;
+  }
+}
+
+@keyframes collection-tablet-swipe-out {
+  to {
+    transform: translateX(-108%);
+    opacity: 0;
+  }
+}
+
+@keyframes collection-tablet-swipe-in {
+  from {
+    transform: translateX(108%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collection-tablet__poem--out {
+    animation: collection-tablet-fade-out 0.35s ease forwards;
+  }
+
+  .collection-tablet__poem--in {
+    animation: collection-tablet-fade-in 0.35s ease forwards;
+  }
+}
+
+@keyframes collection-tablet-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes collection-tablet-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (min-width: 769px) {
+  .collection-tablet {
+    &__title {
+      font-size: 13px;
+    }
+
+    &__line {
+      font-size: 10px;
+    }
+  }
+}

@@ -48,7 +48,9 @@ export default function Header() {
                     <Link to='/poems'>Мої вірші</Link>
                     <Link to='/#Feedback'>Спілкування</Link>
                     <Link to='/#socials'>Соц. мережі</Link>
-                    <a href='' onClick={handleNavClick}>Політика Конфіденційності</a>
+                    <Link to='/privacy' onClick={handleNavClick}>
+                        Політика конфіденційності
+                    </Link>
                 </div>
 
                 <span className='divider-2'></span>
