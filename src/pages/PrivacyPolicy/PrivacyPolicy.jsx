@@ -1,7 +1,7 @@
 import "./index.scss";
 
-const SITE_URL = "www.kvitka.com.ua";
-const CONTACT_EMAIL = "kvitka@gmail.com";
+const SITE_URL = "liya-ruddy.vercel.app";
+const CONTACT_EMAIL = "uzkolia@gmail.com";
 
 export default function PrivacyPolicy() {
     return (

@@ -2,9 +2,34 @@ import './index.scss'
 import {useState} from "react";
 import { Link } from "react-router-dom";
 import MusicCircle from "../../components/MusicCircle/MusicCircle.jsx";
+import { sendMessage } from "../../lib/sendMessage.js";
 
 export default function Home() {
     const [statisticItemsActiveIndex, setStatisticItemsActiveIndex] = useState(null);
+    const [form, setForm] = useState({ name: "", email: "", message: "", company: "" });
+    const [formStatus, setFormStatus] = useState("idle"); // idle | sending | sent | error
+
+    const handleFormChange = (field) => (e) =>
+        setForm((prev) => ({ ...prev, [field]: e.target.value }));
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        if (formStatus === "sending") return;
+        if (!form.name.trim() || !form.message.trim()) {
+            setFormStatus("error");
+            return;
+        }
+
+        setFormStatus("sending");
+        try {
+            await sendMessage({ ...form, source: "home" });
+            setForm({ name: "", email: "", message: "", company: "" });
+            setFormStatus("sent");
+        } catch {
+            setFormStatus("error");
+        }
+    };
+
     const statisticItems = [
         {
             img: "../vector-6.svg",
@@ -16,7 +41,7 @@ export default function Home() {
             text: "років творчості",
         },
         {
-            count: "10+",
+            count: "50+",
             text: "написаних віршів",
         },
     ];
@@ -28,12 +53,12 @@ export default function Home() {
                 <div className="home-section-1-left">
                     <MusicCircle
                         playlist={[
-                            { title: "Lavanda 01", src: "/audio/audio-1.mp3" },
-                            { title: "Lavanda 02", src: "/audio/audio-2.mp3" },
-                            { title: "Lavanda 03", src: "/audio/audio-3.mp3" },
-                            { title: "Lavanda 04", src: "/audio/audio-4.mp3" },
-                            { title: "Lavanda 05", src: "/audio/audio-5.mp3" },
-                            { title: "Lavanda 06", src: "/audio/audio-6.mp3" },
+                            { title: "Я вмію любити", src: "/audio/ya-vmiyu-lyubyty.mp3" },
+                            { title: "Живу", src: "/audio/zhyvu.mp3" },
+                            { title: "Руки", src: "/audio/ruky.mp3" },
+                            { title: "Ніколи", src: "/audio/nikoly.mp3" },
+                            { title: "Ми дивились", src: "/audio/my-dyvylys.m4a" },
+                            { title: "Довго довго", src: "/audio/dovho-dovho.m4a" },
                         ]}
                         text="turn on the music"
                         speed={12}
@@ -194,14 +219,56 @@ export default function Home() {
                             <p>Також можеш написати мені — про почуття,
                                 про вірші, про себе.</p>
                         </div>
-                        <form>
-                            <label htmlFor={`name`}></label>
-                            <input id={`name`} type={`text`} placeholder={'Ім’я*'}/>
-                            <label htmlFor={`email`}></label>
-                            <input id={`email`} type={`email`} placeholder={'E-mail (для зворотньої відповіді)'}/>
-                            <label htmlFor={`name`}></label>
-                            <textarea id={`name`} placeholder={'Повідомлення*'}/>
-                            <button>Відправити</button>
+                        <form onSubmit={handleFormSubmit}>
+                            <label htmlFor="contact-name"></label>
+                            <input
+                                id="contact-name"
+                                type="text"
+                                placeholder={'Ім’я*'}
+                                value={form.name}
+                                onChange={handleFormChange("name")}
+                                required
+                            />
+                            <label htmlFor="contact-email"></label>
+                            <input
+                                id="contact-email"
+                                type="email"
+                                placeholder={'E-mail (для зворотньої відповіді)'}
+                                value={form.email}
+                                onChange={handleFormChange("email")}
+                            />
+                            <label htmlFor="contact-message"></label>
+                            <textarea
+                                id="contact-message"
+                                placeholder={'Повідомлення*'}
+                                value={form.message}
+                                onChange={handleFormChange("message")}
+                                required
+                            />
+                            {/* приманка для ботів — людина її не бачить */}
+                            <input
+                                type="text"
+                                name="company"
+                                tabIndex={-1}
+                                autoComplete="off"
+                                aria-hidden="true"
+                                className="form-honeypot"
+                                value={form.company}
+                                onChange={handleFormChange("company")}
+                            />
+                            <button type="submit" disabled={formStatus === "sending"}>
+                                {formStatus === "sending" ? "Відправляємо..." : "Відправити"}
+                            </button>
+                            {formStatus === "sent" && (
+                                <p className="form-status form-status--ok" role="status">
+                                    Дякую! Повідомлення надіслано.
+                                </p>
+                            )}
+                            {formStatus === "error" && (
+                                <p className="form-status form-status--error" role="alert">
+                                    Не вдалося надіслати. Заповніть ім’я та повідомлення або спробуйте пізніше.
+                                </p>
+                            )}
                         </form>
                     </div>
                 </div>

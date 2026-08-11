@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { poems } from "../../data/poems.js";
 import PoemPlayer from "../../components/PoemPlayer/PoemPlayer.jsx";
+import { sendMessage } from "../../lib/sendMessage.js";
 import CollectionTablet from "../../components/CollectionTablet/CollectionTablet.jsx";
 import "./index.scss";
 
@@ -13,6 +14,7 @@ export default function Poems() {
     const [volume, setVolume] = useState(0.2);
     const [likedIds, setLikedIds] = useState(() => new Set());
     const [feedback, setFeedback] = useState("");
+    const [feedbackStatus, setFeedbackStatus] = useState("idle"); // idle | sending | sent | error
 
     const audioRef = useRef(null);
     const isSeekingRef = useRef(false);
@@ -59,6 +61,17 @@ export default function Poems() {
         const poem = poems.find((p) => p.id === activeId);
         if (!poem) return;
 
+        // вірш може бути без аудіозапису — тоді плеєр просто неактивний
+        if (!poem.audio) {
+            audio.pause();
+            audio.removeAttribute("src");
+            setIsPlaying(false);
+            setProgress(0);
+            setCurrentTime(0);
+            setDuration(0);
+            return;
+        }
+
         audio.src = poem.audio;
         audio.load();
         audio.pause();
@@ -78,7 +91,7 @@ export default function Poems() {
 
     const togglePlay = () => {
         const audio = audioRef.current;
-        if (!audio || !activePoem) return;
+        if (!audio || !activePoem?.audio) return;
         if (isPlaying) {
             audio.pause();
             setIsPlaying(false);
@@ -132,10 +145,22 @@ export default function Poems() {
         });
     };
 
-    const handleFeedbackSubmit = (e) => {
+    const handleFeedbackSubmit = async (e) => {
         e.preventDefault();
-        if (!feedback.trim()) return;
-        setFeedback("");
+        if (!feedback.trim() || feedbackStatus === "sending") return;
+
+        setFeedbackStatus("sending");
+        try {
+            await sendMessage({
+                message: feedback,
+                source: "poems",
+                name: activePoem ? `Відгук про вірш «${activePoem.title}»` : "",
+            });
+            setFeedback("");
+            setFeedbackStatus("sent");
+        } catch {
+            setFeedbackStatus("error");
+        }
     };
 
     return (
@@ -166,7 +191,9 @@ export default function Poems() {
                                 aria-label={`${poem.title}, ${poem.author}`}
                             >
                                 <img src={poem.cover} alt="" />
-                                <span className="poems-cover__caption">{poem.coverCaption}</span>
+                                {poem.coverCaption && (
+                                    <span className="poems-cover__caption">{poem.coverCaption}</span>
+                                )}
                                 {isActive && (
                                     <div className="poems-cover__overlay">
                                         <span className="poems-cover__play" aria-hidden="true" />
@@ -212,7 +239,7 @@ export default function Poems() {
                             ? `${activePoem.playerLabel} ${activePoem.author}`
                             : "Оберіть вірш"
                     }
-                    disabled={!activePoem}
+                    disabled={!activePoem?.audio}
                     isPlaying={isPlaying}
                     progress={progress}
                     currentTime={currentTime}
@@ -252,9 +279,23 @@ export default function Poems() {
                             value={feedback}
                             onChange={(e) => setFeedback(e.target.value)}
                         />
-                        <button type="submit" className="poems-feedback__submit">
-                            Відправити
+                        <button
+                            type="submit"
+                            className="poems-feedback__submit"
+                            disabled={feedbackStatus === "sending"}
+                        >
+                            {feedbackStatus === "sending" ? "Відправляємо..." : "Відправити"}
                         </button>
+                        {feedbackStatus === "sent" && (
+                            <p className="form-status form-status--ok" role="status">
+                                Дякую! Ваші думки надіслані авторці.
+                            </p>
+                        )}
+                        {feedbackStatus === "error" && (
+                            <p className="form-status form-status--error" role="alert">
+                                Не вдалося надіслати. Спробуйте, будь ласка, пізніше.
+                            </p>
+                        )}
                     </form>
 
                     <img

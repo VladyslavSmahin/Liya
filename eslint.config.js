@@ -6,7 +6,18 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 export default [
   { ignores: ['dist'] },
   {
+    // серверний код: vercel-функції та конфіг збірки
+    files: ['api/**/*.js', 'vite.config.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: globals.node,
+    },
+    rules: js.configs.recommended.rules,
+  },
+  {
     files: ['**/*.{js,jsx}'],
+    ignores: ['api/**/*.js', 'vite.config.js'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,

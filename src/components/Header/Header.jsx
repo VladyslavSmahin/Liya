@@ -26,7 +26,7 @@ export default function Header() {
                         <img src="/fav-icon.png" className="logo" alt="" />
                     </Link>
 
-                    <div className="nav-links-left">
+                    <div className="nav-links-right">
                         <Link to={{ pathname: "/", hash: "#Feedback" }}>Спілкування</Link>
                         <Link to={{ pathname: "/", hash: "#socials" }}>Соц. мережі</Link>
                     </div>

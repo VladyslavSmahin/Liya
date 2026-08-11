@@ -1,5 +1,6 @@
 
 .header {
+  position: relative;
   padding: 10px 0;
   border-bottom: 1px solid black;
   @media screen and (max-width: 768px) {
@@ -19,13 +20,6 @@
     transform: translate(-50%);
   }
 
-  @media screen and (max-width: 768px) {
-    nav a {
-      display: none;
-    }
-
-  }
-
   nav {
     height: 80px;
     display: flex;
@@ -42,6 +36,19 @@
       display: flex;
       justify-content: space-around;
       width: 300px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    // ховаємо лише пункти меню, логотип лишається по центру
+    nav .nav-links-left,
+    nav .nav-links-right {
+      display: none;
+    }
+
+    .logo {
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 }
